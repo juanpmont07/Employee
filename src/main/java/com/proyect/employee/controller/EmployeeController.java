@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyect.employee.model.Employee;
@@ -30,24 +29,24 @@ public class EmployeeController {
 	EmployeeService emploServ;
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<HttpStatus> save(HttpServletRequest request,
+	public ResponseEntity<Employee> save(HttpServletRequest request,
 			@RequestBody Employee emp) {	
 		emploServ.create(emp);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<HttpStatus> update(HttpServletRequest request,
+	public ResponseEntity<Employee> update(HttpServletRequest request,
 			@RequestBody Employee emp) {	
 		emploServ.update(emp);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<HttpStatus> delete(HttpServletRequest request,
+	public ResponseEntity<Employee> delete(HttpServletRequest request,
 			@RequestBody Employee empleado) {	
 		emploServ.delete(empleado);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(empleado, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
